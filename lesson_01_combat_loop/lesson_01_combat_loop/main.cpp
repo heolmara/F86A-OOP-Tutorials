@@ -1,8 +1,14 @@
 #include <iostream>
+#include <random>
+
 using namespace std;
 
 int main()
 {
+	random_device rd; // set up generator
+	mt19937 gen(rd()); // seed mersenne twister (number generator)
+	uniform_int_distribution<> dist(10, 20); // gives number between 10 and 20 
+
 	int playerHealth = 100;
 	int enemyHealth = 50;
 	int choice = 0;
@@ -23,12 +29,19 @@ int main()
 		{
 			cout << "You defend and reduce incoming damage!\n";
 		}
+		else if (choice == 3)
+		{
+			playerHealth + 10;
+			cout << "You heal for 10 HP!\n";
+		}
 		if (enemyHealth > 0)
 		{
+
 			int enemyDamage = (choice == 2) ? 2 : 5;
 			playerHealth -= enemyDamage;
 			cout << "The enemy attacks you for " << enemyDamage << " damage!\n";
 		}
+
 	}
 
 	cout << ((playerHealth <= 0) ? "You were defeated!\n" : "\nEnemy defeated!\n");

@@ -42,10 +42,15 @@ int main()
 					playerHealth += 10;
 					cout << "You heal for 10 HP!\n";
 				}
-				else if (potionUses <= 0)
+				else if (potionUses <= 0) // if all potions used
 				{
 					cout << "You have no more potions!\n";
 				}
+			}
+			else
+			{
+				cout << "Invalid choice, please try again.\n";
+				cin >> choice;
 			}
 
 			if (enemyHealth > 0)
@@ -63,7 +68,7 @@ int main()
 		if (choice == 1)
 		{
 			cout << "Restarting!\n";
-			playerHealth = 100;
+			playerHealth = 100; // resets player and enemy health when restarting
 			enemyHealth = 50;
 		}
 		else if (choice == 2)

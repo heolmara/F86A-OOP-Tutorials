@@ -86,22 +86,21 @@ int main()
 		{
 			DisplayStats(playerHealth, enemyHealth);
 			cin >> choice;
-			if (choice == 1)
+			switch (choice)
 			{
-				enemyHealth = PlayerAttack(enemyHealth);
-			}
-			else if (choice == 2)
-			{
-				std::cout << "You defend and reduce incoming damage!\n";
-			}
-			else if (choice == 3)
-			{
-				playerHealth = PlayerHeal(playerHealth);
-			}
-			else
-			{
-				std::cout << "Invalid choice, please try again.\n";
-				cin >> choice;
+			case 1:																// choice 1: attack
+					enemyHealth = PlayerAttack(enemyHealth); 
+					break;
+			case 2:																// choice 2: defend
+					std::cout << "You defend and reduce incoming damage!\n";
+					break;
+			case 3:																// choice 3: heal
+					playerHealth = PlayerHeal(playerHealth);
+					break;
+			default:															// invalid answer
+					std::cout << "Invalid choice, please try again.\n";
+					cin >> choice;
+					break;
 			}
 			playerHealth = EnemyDamage(enemyHealth, choice, playerHealth);
 		}
@@ -109,18 +108,18 @@ int main()
 		WinOrDefeat(playerHealth);
 		cin >> choice;
 
-		if (choice == 1)
+		switch (choice)
 		{
-			playerHealth, enemyHealth = RestartGame(playerHealth, enemyHealth);
-		}
-		else if (choice == 2)
-		{
-			quitGame = QuitGame(quitGame);
-		}
-		else
-		{
-			std::cout << "Invalid choice, please try again.\n"; // gets the player to input a new choice if choice is invalid
-			cin >> choice;
+		case 1:																	// choice 1: restart game
+				playerHealth, enemyHealth = RestartGame(playerHealth, enemyHealth);
+				break;
+		case 2:																	// choice 2: quit game
+				quitGame = QuitGame(quitGame);
+				break;
+		default:
+				std::cout << "Invalid choice, please try again.\n"; // gets the player to input a new choice if choice is invalid
+				cin >> choice;
+				break;
 		}
 	}
 

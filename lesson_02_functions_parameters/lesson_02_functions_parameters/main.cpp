@@ -12,9 +12,8 @@ int PlayerAttack(int enemyHealth)
 	return enemyHealth;
 }
 
-int PlayerHeal(int playerHealth)
+int PlayerHeal(int playerHealth, int potionUses)
 {
-	int potionUses = 3;
 	if (potionUses > 0)
 	{
 		potionUses -= 1;
@@ -26,7 +25,7 @@ int PlayerHeal(int playerHealth)
 		std::cout << "You have no more potions!\n";
 	}
 
-	return playerHealth;
+	return playerHealth, potionUses;
 }
 
 void DisplayStats(int playerHealth, int enemyHealth) // displays stats when each attack starts
@@ -76,6 +75,7 @@ int main()
 {
 	int playerHealth = 100;
 	int enemyHealth = 50;
+	int potionUses = 3;
 	int choice = 0;
 	string choiceQuit = "null";
 	bool quitGame = false;
@@ -95,7 +95,7 @@ int main()
 					std::cout << "You defend and reduce incoming damage!\n";
 					break;
 			case 3:																// choice 3: heal
-					playerHealth = PlayerHeal(playerHealth);
+					playerHealth, potionUses = PlayerHeal(playerHealth, potionUses);
 					break;
 			default:															// invalid answer
 					std::cout << "Invalid choice, please try again.\n";
